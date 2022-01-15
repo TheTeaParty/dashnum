@@ -1,15 +1,15 @@
 package main
 
 import (
+	"math"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
-// Task 1: Difficulty - 1/10; Estimate - 30 minutes
+// Task 1: Difficulty - 1/10; Estimate - 30 minutes; Actual - 27 minutes
 
 func main() {
-
 }
 
 // testValidity takes the string as an input, and returns boolean flag `true` if the given
@@ -45,4 +45,47 @@ func wholeStory(str string) string {
 	}
 
 	return strings.Join(story, " ")
+}
+
+// storyStats returns four things:
+//   * the shortest word
+//   * the longest word
+//   * the average word length
+//   * the list (or empty list) of all words from the story that have the length the same as the average length rounded up and down.
+func storyStats(str string) (string, string, float64, []string) {
+	var re = regexp.MustCompile(`([a-zA-Z]+)-?`)
+	matches := re.FindAllStringSubmatch(str, -1)
+	words := make(map[int][]string, 0)
+	longestLen := 0
+	shortestLen := math.MaxInt
+	total := 0
+
+	for _, match := range matches {
+		wLen := len(match[1])
+		total += wLen
+
+		_, ok := words[wLen]
+		if !ok {
+			words[wLen] = make([]string, 0)
+		}
+
+		words[wLen] = append(words[wLen], match[1])
+
+		if wLen > longestLen {
+			longestLen = wLen
+		}
+
+		if wLen < shortestLen {
+			shortestLen = wLen
+		}
+	}
+
+	avgF := float64(total) / float64(len(matches))
+	avgUp := int(math.Ceil(avgF))
+	avgDown := int(math.Floor(avgF))
+
+	avgUps, _ := words[avgUp]
+	avgDowns, _ := words[avgDown]
+
+	return words[longestLen][0], words[shortestLen][0], avgF, append(avgUps, avgDowns...)
 }
