@@ -67,6 +67,10 @@ func testValidity(str string) bool {
 
 // averageNumber takes the string, and returns the average number from all the numbers
 func averageNumber(str string) float64 {
+	if !testValidity(str) {
+		return 0
+	}
+
 	var re = regexp.MustCompile(`([0-9]+)-?`)
 	matches := re.FindAllStringSubmatch(str, -1)
 	var sum int
@@ -82,6 +86,10 @@ func averageNumber(str string) float64 {
 // wholeStory takes the string, and returns a text that is composed of all the text words separated by
 // spaces, e.g. `story` called for the string `1-hello-2-world` should return text: `"hello world"
 func wholeStory(str string) string {
+	if !testValidity(str) {
+		return ""
+	}
+
 	var re = regexp.MustCompile(`([a-zA-Z]+)-?`)
 	matches := re.FindAllStringSubmatch(str, -1)
 	var story []string
@@ -99,6 +107,10 @@ func wholeStory(str string) string {
 //   * the average word length
 //   * the list (or empty list) of all words from the story that have the length the same as the average length rounded up and down.
 func storyStats(str string) (string, string, float64, []string) {
+	if !testValidity(str) {
+		return "", "", 0, []string{}
+	}
+
 	var re = regexp.MustCompile(`([a-zA-Z]+)-?`)
 	matches := re.FindAllStringSubmatch(str, -1)
 	words := make(map[int][]string, 0)
