@@ -38,11 +38,11 @@ func Test_storyStats(t *testing.T) {
 }
 
 func Test_testValidity(t *testing.T) {
-	valid1 := testValidity("23-ab-48-caba-150-haha")
+	valid1 := testValidity(generate(true))
 	if !valid1 {
 		t.Fatalf("Error Checking Success Validity")
 	}
-	valid2 := testValidity("23-55-ab-48-caba-150-haha")
+	valid2 := testValidity(generate(false))
 	if valid2 {
 		t.Fatalf("Error Checking Fail Validity")
 	}
