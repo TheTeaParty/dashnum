@@ -1,4 +1,4 @@
-package main
+package dashnum
 
 import (
 	"fmt"
@@ -18,9 +18,6 @@ func init() {
 
 // Task 1: Difficulty - 1/10; Estimate - 30 minutes; Actual - 27 minutes
 // Task 2: Difficulty - 1/10; Estimate - 10 minutes
-
-func main() {
-}
 
 // generate takes boolean flag and generates random correct strings if the
 // parameter is `true` and random incorrect strings if the flag is `false`.
