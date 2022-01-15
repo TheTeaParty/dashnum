@@ -17,7 +17,7 @@ func init() {
 }
 
 // Task 1: Difficulty - 1/10; Estimate - 30 minutes; Actual - 27 minutes
-// Task 2: Difficulty - 1/10; Estimate - 10 minutes
+// Task 2: Difficulty - 1/10; Estimate - 10 minutes; Actual - 6 minutes
 
 // generate takes boolean flag and generates random correct strings if the
 // parameter is `true` and random incorrect strings if the flag is `false`.
