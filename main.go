@@ -2,15 +2,32 @@ package main
 
 import (
 	"math"
+	"math/rand"
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 )
+
+var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+
+func init() {
+	rand.Seed(time.Now().UnixNano())
+}
 
 // Task 1: Difficulty - 1/10; Estimate - 30 minutes; Actual - 27 minutes
 // Task 2: Difficulty - 1/10; Estimate - 10 minutes
 
 func main() {
+}
+
+// randString generates random string of the given `n` length
+func randString(n int) string {
+	b := make([]rune, n)
+	for i := range b {
+		b[i] = letterRunes[rand.Intn(len(letterRunes))]
+	}
+	return string(b)
 }
 
 // testValidity takes the string as an input, and returns boolean flag `true` if the given
