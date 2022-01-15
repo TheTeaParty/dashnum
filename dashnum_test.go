@@ -30,10 +30,11 @@ func Test_averageNumber(t *testing.T) {
 func Test_storyStats(t *testing.T) {
 	testStr := "23-ab-48-longest-56-haha"
 	avgs1 := (float64(len("ab")) +float64(len("longest")) +float64(len("haha"))) / float64(3)
-	long1, short1, avg1, _ := storyStats(testStr)
-	assertEqual(t, long1, len("longest"), "Longest Word Test Failed: %v != %v")
-	assertEqual(t, short1, len("ab"), "Shortest Word Test Failed: %v != %v")
-	assertEqual(t, avg1, avgs1, "Avg Word Length Test Failed: %v != %v")
+	long1, short1, avg1, avgsR1 := storyStats(testStr)
+	assertEqual(t, long1, "longest", "Longest Word Test Failed")
+	assertEqual(t, short1, "ab", "Shortest Word Test Failed")
+	assertEqual(t, avg1, avgs1, "Avg Word Length Test Failed")
+	assertEqual(t, len(avgsR1), 1, "Avg Word Length Test Failed")
 }
 //
 //func Test_testValidity(t *testing.T) {
