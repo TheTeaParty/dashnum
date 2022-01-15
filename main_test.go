@@ -1,28 +1,25 @@
 package main
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
 
+func assertEqual(t *testing.T, a interface{}, b interface{}, message string) {
+	if a == b {
+		return
+	}
+	if len(message) == 0 {
+		message = fmt.Sprintf("%v != %v", a, b)
+	}
+	t.Fatal(message)
+}
+
 func Test_averageNumber(t *testing.T) {
-	type args struct {
-		str string
-	}
-	tests := []struct {
-		name string
-		args args
-		want float64
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := averageNumber(tt.args.str); got != tt.want {
-				t.Errorf("averageNumber() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+	avg := averageNumber("23-ab-48-caba-56-haha")
+	expectAvg := (float64(23) - float64(48) - float64(56)) / float64(3)
+	assertEqual(t, avg, expectAvg, "%v != %v")
 }
 
 func Test_storyStats(t *testing.T) {
