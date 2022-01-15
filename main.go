@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math"
 	"math/rand"
 	"regexp"
@@ -19,6 +20,36 @@ func init() {
 // Task 2: Difficulty - 1/10; Estimate - 10 minutes
 
 func main() {
+}
+
+// generate takes boolean flag and generates random correct strings if the
+// parameter is `true` and random incorrect strings if the flag is `false`.
+func generate(valid bool) string {
+
+	n := rand.Intn(100)
+	randWordL := rand.Intn(32-1) + 1
+	randN := rand.Intn(100-1) + 1
+
+	var str string
+
+	if !valid {
+		str = fmt.Sprintf("%v-%v", randString(randWordL), randN)
+	} else {
+		str = fmt.Sprintf("%v-%v", randN, randString(randWordL))
+	}
+
+	for i := 0; i < n; i++ {
+		randWordL := rand.Intn(32-1) + 1
+		randN := rand.Intn(100-1) + 1
+
+		str = fmt.Sprintf("%v-%v-%v", str, randN, randString(randWordL))
+	}
+
+	if !valid {
+		str = fmt.Sprintf("%v", str)
+	}
+
+	return str
 }
 
 // randString generates random string of the given `n` length
