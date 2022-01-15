@@ -8,6 +8,7 @@ import (
 )
 
 // Task 1: Difficulty - 1/10; Estimate - 30 minutes; Actual - 27 minutes
+// Task 2: Difficulty - 1/10; Estimate - 10 minutes
 
 func main() {
 }
