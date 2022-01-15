@@ -47,23 +47,8 @@ func Test_testValidity(t *testing.T) {
 		t.Fatalf("Error Checking Fail Validity")
 	}
 }
-//
-//func Test_wholeStory(t *testing.T) {
-//	type args struct {
-//		str string
-//	}
-//	tests := []struct {
-//		name string
-//		args args
-//		want string
-//	}{
-//		// TODO: Add test cases.
-//	}
-//	for _, tt := range tests {
-//		t.Run(tt.name, func(t *testing.T) {
-//			if got := wholeStory(tt.args.str); got != tt.want {
-//				t.Errorf("wholeStory() = %v, want %v", got, tt.want)
-//			}
-//		})
-//	}
-//}
+
+func Test_wholeStory(t *testing.T) {
+	story1 := wholeStory("23-ab-48-caba-150-haha")
+	assertEqual(t, story1, "ab caba haha", "Error Checking Success Story")
+}
