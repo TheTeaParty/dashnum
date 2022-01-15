@@ -36,26 +36,17 @@ func Test_storyStats(t *testing.T) {
 	assertEqual(t, avg1, avgs1, "Avg Word Length Test Failed")
 	assertEqual(t, len(avgsR1), 1, "Avg Word Length Test Failed")
 }
-//
-//func Test_testValidity(t *testing.T) {
-//	type args struct {
-//		str string
-//	}
-//	tests := []struct {
-//		name string
-//		args args
-//		want bool
-//	}{
-//		// TODO: Add test cases.
-//	}
-//	for _, tt := range tests {
-//		t.Run(tt.name, func(t *testing.T) {
-//			if got := testValidity(tt.args.str); got != tt.want {
-//				t.Errorf("testValidity() = %v, want %v", got, tt.want)
-//			}
-//		})
-//	}
-//}
+
+func Test_testValidity(t *testing.T) {
+	valid1 := testValidity("23-ab-48-caba-150-haha")
+	if !valid1 {
+		t.Fatalf("Error Checking Success Validity")
+	}
+	valid2 := testValidity("23-55-ab-48-caba-150-haha")
+	if valid2 {
+		t.Fatalf("Error Checking Fail Validity")
+	}
+}
 //
 //func Test_wholeStory(t *testing.T) {
 //	type args struct {
