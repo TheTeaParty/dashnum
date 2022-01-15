@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"reflect"
 	"testing"
 )
 
@@ -17,42 +16,21 @@ func assertEqual(t *testing.T, a interface{}, b interface{}, message string) {
 }
 
 func Test_averageNumber(t *testing.T) {
-	avg := averageNumber("23-ab-48-caba-56-haha")
-	expectAvg := (float64(23) - float64(48) - float64(56)) / float64(3)
-	assertEqual(t, avg, expectAvg, "%v != %v")
+	avg1 := averageNumber("23-ab-48-caba-56-haha")
+	expectAvg := (float64(23) + float64(48) + float64(56)) / float64(3)
+	assertEqual(t, avg1, expectAvg, "%v != %v")
+
+	avg2 := averageNumber("23-ab-48-caba-150-haha")
+	assertEqual(t, avg2, expectAvg, "%v != %v")
 }
 
 func Test_storyStats(t *testing.T) {
-	type args struct {
-		str string
-	}
-	tests := []struct {
-		name  string
-		args  args
-		want  string
-		want1 string
-		want2 float64
-		want3 []string
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got, got1, got2, got3 := storyStats(tt.args.str)
-			if got != tt.want {
-				t.Errorf("storyStats() got = %v, want %v", got, tt.want)
-			}
-			if got1 != tt.want1 {
-				t.Errorf("storyStats() got1 = %v, want %v", got1, tt.want1)
-			}
-			if got2 != tt.want2 {
-				t.Errorf("storyStats() got2 = %v, want %v", got2, tt.want2)
-			}
-			if !reflect.DeepEqual(got3, tt.want3) {
-				t.Errorf("storyStats() got3 = %v, want %v", got3, tt.want3)
-			}
-		})
-	}
+	testStr := "23-ab-48-longest-56-haha"
+	avgs1 := float64(len("longest")) +
+	long1, short1, avg1, avgStrs := storyStats(testStr)
+	assertEqual(t, long1, len("longest"), "Longest Word Test Failed: %v != %v")
+	assertEqual(t, short1, len("ab"), "Shortest Word Test Failed: %v != %v")
+	assertEqual(t, avg1, len("ab"), "Avg Word Length Test Failed: %v != %v")
 }
 
 func Test_testValidity(t *testing.T) {
